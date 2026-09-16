@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jokes Bapak-bapak & Minta Maaf</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /* Ganti 'foto.jpg' sesuai nama file gambar kamu di folder VS Code */
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('foto1.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .content-box {
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border: 1px dashed #ccc;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-main {
+      background: #ff4757;
+      color: white;
+    }
+
+    .btn-main:hover {
+      background: #ff6b81;
+    }
+
+    .btn-action {
+      background: #2ed573;
+      color: white;
+    }
+
+    .btn-action:hover {
+      background: #26af5f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1 id="title">Jokes Bapak-Bapak 👨</h1>
+    
+    <div class="content-box">
+      <p id="textContent">Loading joke...</p>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-action" id="actionBtn" onclick="nextJoke()">Jokes Lainnya 🤣</button>
+      <button class="btn-main" id="toggleBtn" onclick="toggleMode()">Mode Minta Maaf 🥺</button>
+    </div>
+  </div>
+
+  <script>
+    const jokes = [
+      "Kipas apa yang ditunggu-tunggu cewek? Kipas-tian.",
+      "Sayur apa yang jago nyanyi? Kol-play.",
+      "Kenapa matahari tenggelam? Karena gak bisa berenang.",
+      "Awan apa yang bikin seneng? Awanna be with you.",
+      "Buah apa yang paling tidak jujur? Buah naga, soalnya mitos.",
+      "Nasi goreng apa yang paling manis? Nasi goreng-at sama kamu."
+    ];
+
+    const maafs = [
+      "Sayang, maafin aku ya kalau sering garing atau bikin kesal... Aku sayang banget sama kamu! ❤️",
+      "Maaf ya kalau aku kadang kurang peka. Beneran gak maksud bikin kamu sedih kok 🥺",
+      "Jangan marah lagi ya? Nanti manisnya kamu hilang. Aku janji bakal lebih ngertiin kamu! 🌹"
+    ];
+
+    let mode = "joke"; 
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function updateContent() {
+      const textContent = document.getElementById("textContent");
+      const title = document.getElementById("title");
+      const actionBtn = document.getElementById("actionBtn");
+      const toggleBtn = document.getElementById("toggleBtn");
+
+      if (mode === "joke") {
+        title.innerText = "Jokes Bapak-Bapak 👨";
+        textContent.innerText = getRandomItem(jokes);
+        actionBtn.innerText = "Jokes Lainnya 🤣";
+        toggleBtn.innerText = "Mode Minta Maaf 🥺";
+      } else {
+        title.innerText = "Pesan Maaf Untukmu 💖";
+        textContent.innerText = getRandomItem(maafs);
+        actionBtn.innerText = "Pesan Lainnya 💌";
+        toggleBtn.innerText = "Kembali ke Jokes 👨";
+      }
+    }
+
+    function nextJoke() {
+      updateContent();
+    }
+
+    function toggleMode() {
+      mode = mode === "joke" ? "maaf" : "joke";
+      updateContent();
+    }
+
+    updateContent();
+  </script>
+
+</body>
+</html>
